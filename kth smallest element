@@ -1,0 +1,497 @@
+import java.util.Arrays;
+import java.util.Random;
+
+public class Project2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		long start, end;
+		long algo1Timekth1 = 0;
+		long algo2Timekth1 = 0;
+		long algo2bTimekth1 = 0;
+		long algo3Timekth1 = 0;
+		
+		long algo1Timekthfourth = 0;
+		long algo2Timekthfourth = 0;
+		long algo2bTimekthfourth = 0;
+		long algo3Timekthfourth = 0;
+		
+		long algo1Timekthhalf = 0;
+		long algo2Timekthhalf = 0;
+		long algo2bTimekthhalf = 0;
+		long algo3Timekthhalf = 0;
+		
+		long algo1Timekththreefourth = 0;
+		long algo2Timekththreefourth = 0;
+		long algo2bTimekththreefourth = 0;
+		long algo3Timekththreefourth = 0;
+		
+		long algo1Timekthn = 0;
+		long algo2Timekthn = 0;
+		long algo2bTimekthn = 0;
+		long algo3Timekthn = 0;
+		Random rand = new Random();
+		for(int i = 50; i <= 6000; i+=50) {
+			//System.out.println("N:" + i);
+			int [] array1 = new int[i];
+			int [] array2 = new int[i];
+			int [] array3 = new int[i];
+			int [] array4 = new int[i];
+			
+			for(int u = 0; u < i; u++) {
+				int r = rand.nextInt(100);
+				array1[u] = r;
+				array2[u] = r;
+				array3[u] = r;
+				array4[u] = r;
+				
+			}
+			int kth1 = 1;
+			int kthfourth = array1.length/4;
+			int kthhalf = array1.length/2;
+			int kththreefourth = (array1.length * 3)/4;
+			int kthn = array1.length;
+			
+			int result;
+			for(int t = 0; t < 1000; t++) {
+				int[]array1helperkth1 = new int[array1.length];
+				int[]array2helperkth1 = new int[array2.length];
+				int[]array3helperkth1 = new int[array3.length];
+				int[]array4helperkth1 = new int[array4.length];
+				
+				int[]array1helperkthfourth = new int[array1.length];
+				int[]array2helperkthfourth = new int[array2.length];
+				int[]array3helperkthfourth = new int[array3.length];
+				int[]array4helperkthfourth = new int[array4.length];
+				
+				int[]array1helperkthhalf = new int[array1.length];
+				int[]array2helperkthhalf = new int[array2.length];
+				int[]array3helperkthhalf = new int[array3.length];
+				int[]array4helperkthhalf = new int[array4.length];
+				
+				int[]array1helperkththreefourth = new int[array1.length];
+				int[]array2helperkththreefourth = new int[array2.length];
+				int[]array3helperkththreefourth = new int[array3.length];
+				int[]array4helperkththreefourth = new int[array4.length];
+				
+				int[]array1helperkthn = new int[array1.length];
+				int[]array2helperkthn = new int[array2.length];
+				int[]array3helperkthn = new int[array3.length];
+				int[]array4helperkthn = new int[array4.length];
+				for(int v = 0; v < array1.length;v++) {
+					array1helperkth1[v] = array1[v];
+					array2helperkth1[v] = array2[v];
+					array3helperkth1[v] = array3[v];
+					array4helperkth1[v] = array4[v];
+					
+					array1helperkthfourth[v] = array1[v];
+					array2helperkthfourth[v] = array2[v];
+					array3helperkthfourth[v] = array3[v];
+					array4helperkthfourth[v] = array4[v];
+					
+					array1helperkthhalf[v] = array1[v];
+					array2helperkthhalf[v] = array2[v];
+					array3helperkthhalf[v] = array3[v];
+					array4helperkthhalf[v] = array4[v];
+					
+					array1helperkththreefourth[v] = array1[v];
+					array2helperkththreefourth[v] = array2[v];
+					array3helperkththreefourth[v] = array3[v];
+					array4helperkththreefourth[v] = array4[v];
+					
+					array1helperkthn[v] = array1[v];
+					array2helperkthn[v] = array2[v];
+					array3helperkthn[v] = array3[v];
+					array4helperkthn[v] = array4[v];
+				}
+				
+				//kth 1
+				start = System.nanoTime();
+				Algo1(0,array1helperkth1.length-1, array1helperkth1);
+				result = array1helperkth1[kth1 - 1];
+				end = System.nanoTime();
+				algo1Timekth1 += end - start;
+				
+				start = System.nanoTime();
+				Algo2(array2helperkth1, 0, array2helperkth1.length-1, kth1);
+				end = System.nanoTime();
+				algo2Timekth1 += end - start;
+				
+				start = System.nanoTime();
+				Algo2b(array3helperkth1, 0, array3helperkth1.length-1,kth1);
+				end = System.nanoTime();
+				algo2bTimekth1 += end - start;
+				
+				start = System.nanoTime();
+				Algo3(array4helperkth1,kth1, 0, array4helperkth1.length-1);
+				end = System.nanoTime();
+				algo3Timekth1 += end - start;
+				
+				//kth n/4
+				start = System.nanoTime();
+				Algo1(0,array1helperkthfourth.length-1, array1helperkthfourth);
+				result = array1helperkthfourth[kthfourth-1];
+				end = System.nanoTime();
+				algo1Timekthfourth += end - start;
+				
+				start = System.nanoTime();
+				Algo2(array2helperkthfourth, 0, array2helperkthfourth.length-1, kthfourth);
+				end = System.nanoTime();
+				algo2Timekthfourth += end - start;
+				
+				start = System.nanoTime();
+				Algo2b(array3helperkthfourth, 0, array3helperkthfourth.length-1,kthfourth);
+				end = System.nanoTime();
+				algo2bTimekthfourth += end - start;
+				
+				start = System.nanoTime();
+				Algo3(array4helperkthfourth,kthfourth, 0, array4helperkthfourth.length-1);
+				end = System.nanoTime();
+				algo3Timekthfourth += end - start;
+				
+				//kth n/2
+				start = System.nanoTime();
+				Algo1(0,array1helperkthhalf.length-1, array1helperkthhalf);
+				result = array1helperkthhalf[kthhalf - 1];
+				end = System.nanoTime();
+				algo1Timekthhalf += end - start;
+				
+				start = System.nanoTime();
+				Algo2(array2helperkthhalf, 0, array2helperkthhalf.length-1, kthhalf);
+				end = System.nanoTime();
+				algo2Timekthhalf += end - start;
+				
+				start = System.nanoTime();
+				Algo2b(array3helperkthhalf, 0, array3helperkthhalf.length-1,kthhalf);
+				end = System.nanoTime();
+				algo2bTimekthhalf += end - start;
+				
+				start = System.nanoTime();
+				Algo3(array4helperkthhalf,kthhalf, 0, array4helperkthhalf.length-1);
+				end = System.nanoTime();
+				algo3Timekthhalf += end - start;
+				
+				//kth 3n/4
+				start = System.nanoTime();
+				Algo1(0,array1helperkththreefourth.length-1, array1helperkththreefourth);
+				result = array1helperkththreefourth[kththreefourth - 1];
+				end = System.nanoTime();
+				algo1Timekththreefourth += end - start;
+				
+				start = System.nanoTime();
+				Algo2(array2helperkththreefourth, 0, array2helperkththreefourth.length-1, kththreefourth);
+				end = System.nanoTime();
+				algo2Timekththreefourth += end - start;
+				
+				start = System.nanoTime();
+				Algo2b(array3helperkththreefourth, 0, array3helperkththreefourth.length-1,kththreefourth);
+				end = System.nanoTime();
+				algo2bTimekththreefourth += end - start;
+				
+				start = System.nanoTime();
+				Algo3(array4helperkththreefourth,kththreefourth, 0, array4helperkththreefourth.length-1);
+				end = System.nanoTime();
+				algo3Timekththreefourth += end - start;
+				
+				//kth n
+				start = System.nanoTime();
+				Algo1(0,array1helperkthn.length-1, array1helperkthn);
+				result = array1helperkthn[kthn - 1];
+				end = System.nanoTime();
+				algo1Timekthn += end - start;
+				
+				start = System.nanoTime();
+				Algo2(array2helperkthn, 0, array2helperkthn.length-1, kthn);
+				end = System.nanoTime();
+				algo2Timekthn += end - start;
+				
+				start = System.nanoTime();
+				Algo2b(array3helperkthn, 0, array3helperkthn.length-1,kthn);
+				end = System.nanoTime();
+				algo2bTimekthn += end - start;
+				
+				start = System.nanoTime();
+				Algo3(array4helperkthn,kthn, 0, array4helperkthn.length-1);
+				end = System.nanoTime();
+				algo3Timekthn += end - start;
+				
+			/*	System.out.println("k = 1: " + array1helperkth1[kth1-1]);
+				System.out.println("k = 1: " + Algo2(array2helperkth1, 0, array2helperkth1.length-1, kth1));
+				System.out.println("k = 1: " + Algo2b(array3helperkth1, 0, array3helperkth1.length-1,kth1));
+				System.out.println("k = 1: " +  Algo3(array4helperkth1,kth1, 0, array4helperkth1.length-1));
+				
+				Algo1(0,array1helperkth1.length-1, array1helperkth1);
+				System.out.println("k = n/4: " + array1helperkth1[kthfourth-1]);
+				System.out.println("k = n/4: " + Algo2(array2helperkth1, 0, array2helperkth1.length-1, kthfourth));
+				System.out.println("k = n/4: " + Algo2b(array3helperkth1, 0, array3helperkth1.length-1,kthfourth));
+				System.out.println("k = n/4: " +  Algo3(array4helperkth1,kthfourth, 0, array4helperkth1.length-1));
+				
+				Algo1(0,array1helperkth1.length-1, array1helperkth1);
+				System.out.println("k = n/2: " + array1helperkth1[kthhalf-1]);
+				System.out.println("k = n/2: " + Algo2(array2helperkth1, 0, array2helperkth1.length-1, kthhalf));
+				System.out.println("k = n/2: " + Algo2b(array3helperkth1, 0, array3helperkth1.length-1,kthhalf));
+				System.out.println("k = n/2: " +  Algo3(array4helperkth1,kthhalf, 0, array4helperkth1.length-1));
+				
+				Algo1(0,array1helperkth1.length-1, array1helperkth1);
+				System.out.println("k = 3n/4: " + array1helperkth1[kththreefourth-1]);
+				System.out.println("k = 3n/4: " + Algo2(array2helperkth1, 0, array2helperkth1.length-1, kththreefourth));
+				System.out.println("k = 3n/4: " + Algo2b(array3helperkth1, 0, array3helperkth1.length-1,kththreefourth));
+				System.out.println("k = 3n/4: " +  Algo3(array4helperkth1,kththreefourth, 0, array4helperkth1.length-1));
+
+				Algo1(0,array1helperkth1.length-1, array1helperkth1);
+				System.out.println("k = n: " + array1helperkth1[kthn-1]);
+				System.out.println("k = n: " + Algo2(array2helperkth1, 0, array2helperkth1.length-1, kthn));
+				System.out.println("k = n: " + Algo2b(array3helperkth1, 0, array3helperkth1.length-1,kthn));
+				System.out.println("k = n: " +  Algo3(array4helperkth1,kthn, 0, array4helperkth1.length-1)); 
+				*/
+				
+			}
+			
+			algo1Timekth1 = algo1Timekth1 / 1000;
+			algo2Timekth1 = algo2Timekth1 / 1000;
+			algo2bTimekth1 = algo2bTimekth1 / 1000;
+			algo3Timekth1 = algo3Timekth1 / 1000;
+			
+			algo1Timekthfourth = algo1Timekthfourth / 1000;
+			algo2Timekthfourth = algo2Timekthfourth / 1000;
+			algo2bTimekthfourth = algo2bTimekthfourth / 1000;
+			algo3Timekthfourth = algo3Timekthfourth / 1000;
+			
+			algo1Timekthhalf = algo1Timekthhalf / 1000;
+			algo2Timekthhalf = algo2Timekthhalf / 1000;
+			algo2bTimekthhalf = algo2bTimekthhalf / 1000;
+			algo3Timekthhalf = algo3Timekthhalf / 1000;
+			
+			algo1Timekththreefourth = algo1Timekththreefourth / 1000;
+			algo2Timekththreefourth = algo2Timekththreefourth / 1000;
+			algo2bTimekththreefourth = algo2bTimekththreefourth / 1000;
+			algo3Timekththreefourth = algo3Timekththreefourth / 1000;
+			
+			algo1Timekthn = algo1Timekthn / 1000;
+			algo2Timekthn = algo2Timekthn / 1000;
+			algo2bTimekthn = algo2bTimekthn / 1000;
+			algo3Timekthn = algo3Timekthn / 1000;
+			
+			System.out.println("Kth 1:");
+			System.out.println(algo1Timekth1);
+			System.out.println(algo2Timekth1);
+			System.out.println(algo2bTimekth1);
+			System.out.println(algo3Timekth1);
+			System.out.println("Kth n/4: ");
+			System.out.println(algo1Timekthfourth);
+			System.out.println(algo2Timekthfourth);
+			System.out.println(algo2bTimekthfourth);
+			System.out.println(algo3Timekthfourth);
+			System.out.println("Kth n/2: ");
+			System.out.println(algo1Timekthhalf);
+			System.out.println(algo2Timekthhalf);
+			System.out.println(algo2bTimekthhalf);
+			System.out.println(algo3Timekthhalf);
+			System.out.println("Kth 3n/4 ");
+			System.out.println(algo1Timekththreefourth);
+			System.out.println(algo2Timekththreefourth);
+			System.out.println(algo2bTimekththreefourth);
+			System.out.println(algo3Timekththreefourth);
+			System.out.println("Kth n: ");
+			System.out.println(algo1Timekthn);
+			System.out.println(algo2Timekthn);
+			System.out.println(algo2bTimekthn);
+			System.out.println(algo3Timekthn);
+			
+			
+
+		/*	for(int t = 0 ; t < array1.length; t++) {
+				System.out.print(array2[t] + " ");
+				System.out.print(array4[t] + " ");
+				System.out.println();
+			}*/
+			
+			
+		}
+		
+		
+		
+		
+		
+	
+	}
+	
+	public static void Algo1(int low, int high, int[] array) {
+		if(low < high) {
+			int mid = (low + high) / 2;
+			Algo1(low, mid, array);
+			Algo1(mid + 1, high, array);
+			Merge(low, mid, high, array);
+			
+			
+		}
+	}
+	public static void Merge(int low, int mid, int high, int[] array) {
+		int [] temp = new int[high - low + 1];
+
+		int i = low;
+		int j = mid + 1;
+		int k = 0;
+		
+		while(i <= mid && j <= high) {
+			if(array[i] < array[j]) {
+				temp[k] = array[i];
+				i++;
+			}else {
+				temp[k] = array[j];
+				j++;
+			}
+		k++;	
+		}
+		
+		
+		while(j <= high) {
+			temp[k] = array[j];
+			k++;
+			j++;
+		}
+		
+		while(i <= mid) {
+			temp[k] = array[i];
+			k++;
+			i++;
+		}
+		
+		for(int s = low; s <= high; s++) {
+			array[s] = temp[s - low];
+			//System.out.println(array[0]);
+		}
+	}
+	public static int Algo2(int [] array,int low, int high, int key) {
+		int pivotposition;
+		int m = low; 
+		int j = high;
+		while(m <= j) {
+			pivotposition = partition(array, m, j);
+			if(key - 1 == pivotposition) {
+				return array[pivotposition];
+			}
+			if(key - 1< pivotposition) {
+				j = pivotposition - 1;
+			}else {
+				m = pivotposition + 1; 
+				
+			}
+		}
+		return -1;
+	}
+	public static int partition(int [] array, int low, int high) {
+		int i;
+		
+		int pivot = array[high];
+		i = (low - 1);
+		for(int j = low; j <= high - 1; j++) {
+			if(array[j] <= pivot) {
+				i++;
+				int temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				
+			}
+		}
+		int temp = array[i + 1];
+		array[i + 1] = array[high];
+		array[high] = temp;
+		return (i + 1);
+	}
+	public static int Algo2b(int [] array, int low, int high, int key) {
+		if(key > 0 && key <= high - low + 1) {
+			int pivot = partition(array, low, high);
+			if (pivot - low == key - 1) {
+				return array[pivot];
+			}
+			if(pivot - low > key - 1) {
+				return Algo2b(array, low, pivot - 1, key);
+			}
+			return Algo2b(array, pivot + 1, high, key - pivot + low - 1);
+		}
+		return 1;
+	}
+	
+	
+	public static int Algo3(int [] array, int key, int low, int high) {
+		if(key > 0 && key <= high - low + 1) {
+			int n = high - low + 1;
+			int r = 5;
+			if(n  <= r) {
+				Arrays.sort(array, 0, array.length);
+			}
+			int i;
+			int [] median = new int [n  /r];
+			for(i = 0; i < (n / r); i++) {
+				
+				median[i] = findMedian(array, low + (i * r),  r);
+				
+				
+			}
+			 
+			
+			int medianofMedians;
+			if(i == 1) {
+				medianofMedians = median[i-1];
+			}else {
+				medianofMedians = Algo3(median, (int)Math.ceil(((n /r) / 2)-1), 0, i-1);
+				
+			}
+				
+			
+			
+			int pivot = partitionX(array, low, high, medianofMedians);
+			
+			if(pivot - low == key - 1) {
+				return array[pivot];
+			}
+			
+			if(pivot - low > key - 1) {
+				return Algo3(array, key, low, pivot - 1);
+			}
+				return Algo3(array, key - pivot + low - 1, pivot + 1, high);
+			
+			
+		}
+		return 1;
+	}
+	
+	static int findMedian(int array[], int i,int n) 
+	{ 
+	    if(i <= n) 
+	        Arrays.sort(array, i,i + n); 
+
+	    return array[i + n / 2]; 
+	} 
+	public static int partitionX(int[] array, int low, int high, int x) {
+		int s;
+		int i;
+		int temp;
+		int temp2;
+		for(s = low; s < high; s++) {
+			if(array[s] == x) {
+				break;
+			}
+		}
+		temp2 = array[s];
+		array[s] = array[high];
+		array[high] = temp2;
+		
+		i = low;
+		for(int j = low; j <= high -1; j++) {
+			if(array[j] <= x) {
+				
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				i++;
+			}
+		}
+		temp = array[i];
+		array[i] = array[high];
+		array[high] = temp;
+		return (i);
+	}
+
+}
